@@ -6,9 +6,6 @@
 package mmone.ericsoft.services.builders;
 
 import com.mmone.abs.api.service.AbstractResponseBuilder;
-import com.mmone.abs.api.service.ResponseBuilder;
-import com.mmone.abs.helpers.Builder;
-import com.mmone.abs.helpers.exceptions.BuildErrorException;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext;
@@ -27,6 +24,7 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
 
     public ConfigurationResponseBuilder(ConfigurationRQ request, WebServiceContext webServiceContext, InitialContext initialContext) {
         super(request, webServiceContext, initialContext);
+        setMock(true);
     }
   
     @Override
@@ -36,9 +34,9 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
 
     private void buildMock(){ 
         RoomTypeCl rt = new RoomTypeCl("RT001","Room 1");
-        rt.getRates().add(new RateCl("RA001","Rate 001"));
-        rt.getRates().add(new RateCl("RA002","Rate 002"));
-        getResponse().getRoomTypes().add(rt);
+        rt.getRates().getRateList().add(new RateCl("RA001","Rate 001"));
+        rt.getRates().getRateList().add(new RateCl("RA002","Rate 002"));
+        getResponse().getRoomTypes().getRoomTypesList().add(rt);
     };
     @Override
     public void buildResponse() {

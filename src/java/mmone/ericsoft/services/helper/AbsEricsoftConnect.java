@@ -17,10 +17,7 @@ import javax.jws.WebResult;
 import javax.jws.soap.SOAPBinding;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 import javax.xml.ws.WebServiceContext;
-import mmone.ericsoft.services.builders.ConfigurationResponseBuilder;
 import mmone.ericsoft.services.builders.ResponseBuilderFactory;
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
@@ -41,10 +38,10 @@ public class AbsEricsoftConnect {
             Logger.getLogger(AbsEricsoftConnect.class.getName()).log(Level.SEVERE, null, ex);
              return null;
         }
-    }
-    @WebMethod(operationName="ConfigurationRequest") 
+    } 
+    @WebMethod(operationName="ConfigurationAction") 
     @WebResult(name="ConfigurationResponse")
-    public ConfigurationRS getConfiguration(@WebParam(name = "request") ConfigurationRQ request) {
+    public ConfigurationRS getConfiguration(@WebParam(name = "ConfigurationRequest") ConfigurationRQ request) {
         ResponseBuilderFactory fact = new ResponseBuilderFactory(request, wsc, getContext());
         Builder<ConfigurationRS> b =  fact.getBuilder();  
         try {

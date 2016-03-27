@@ -5,8 +5,6 @@
  */
 package mmone.ericsoft.services.rooms.response;
  
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -19,10 +17,23 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="RoomType")
 public class RoomTypeCl {
 
+    private RatesCl rates;
+
+    @XmlElement(name = "Rates")
+    public RatesCl getRates() {
+        if(rates==null)
+            rates=new RatesCl();
+        return rates;
+    }
+
+    public void setRates(RatesCl rates) {
+        this.rates = rates;
+    }
+    
     public RoomTypeCl() {
     }
 
-    public RoomTypeCl(String id, String Description, List<RateCl> rates) {
+    public RoomTypeCl(String id, String Description,RatesCl rates) {
         this.id = id;
         this.description = Description;
         this.rates = rates;
@@ -53,19 +64,10 @@ public class RoomTypeCl {
         this.description = Description;
     }
 
-    @XmlElement(name="Rates")
-    public List<RateCl> getRates() {
-        if(rates==null)
-            rates = new ArrayList<RateCl>();
-        return rates;
-    }
-
-    public void setRates(List<RateCl> rates) {
-        this.rates = rates;
-    }
+    
     
     private String description;
     
-    private List<RateCl> rates;
+    
     
 }

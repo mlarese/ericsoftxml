@@ -5,21 +5,101 @@
  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="AbsEricsoftConnect" targetNamespace="http://helper.services.ericsoft.mmone/" xmlns:tns="http://helper.services.ericsoft.mmone/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sc="http://schemas.sun.com/2006/03/wss/server" xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy" 
  >
-    <message name="Configuration"/>
-    <message name="ConfigurationResponse"/>
+    <message name="ConfigurationAction"/>
+    <message name="ConfigurationActionResponse"/>
     <portType name="AbsEricsoftConnect">
-        <operation name="Configuration">
-            <input message="tns:Configuration"/>
-            <output message="tns:ConfigurationResponse"/>
+        <operation name="ConfigurationAction">
+            <input message="tns:ConfigurationAction"/>
+            <output message="tns:ConfigurationActionResponse"/>
         </operation>
     </portType>
     <binding name="AbsEricsoftConnectPortBinding" type="tns:AbsEricsoftConnect">
-        <operation name="Configuration">
-            <input></input>
-            <output></output>
+        <operation name="ConfigurationAction">
+            <input/>
+            <output/>
         </operation>
     </binding>
     <service name="AbsEricsoftConnect">
         <port name="AbsEricsoftConnectPort" binding="tns:AbsEricsoftConnectPortBinding"/>
     </service>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_Configuration_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_Configuration_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_ConfigurationAction_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_ConfigurationAction_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_ConfigurationService_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="AbsEricsoftConnectPortBinding_ConfigurationService_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
 </definitions>

@@ -13,19 +13,19 @@ import javax.xml.bind.annotation.XmlType;
  * @author mauro.larese
  */ 
 
-@XmlRootElement(name = "ConfigurationResponse")
+@XmlType(name = "ConfigurationResponse") 
+@XmlRootElement(name = "ConfigurationResponse") 
 public class ConfigurationRS {
-    
-    private List<RoomTypeCl> roomTypes;
+    private RoomTypesCl roomTypes;
 
-    @XmlElement(name="RoomTypes")
-    public List<RoomTypeCl> getRoomTypes() {
+    @XmlElement(name = "RoomTypes")
+    public RoomTypesCl getRoomTypes() {
         if(roomTypes==null)
-            roomTypes=new ArrayList<RoomTypeCl>();
+            roomTypes=new RoomTypesCl();
         return roomTypes;
     }
 
-    public void setRoomTypes(List<RoomTypeCl> roomTypes) {
+    public void setRoomTypes(RoomTypesCl roomTypes) {
         this.roomTypes = roomTypes;
     }
 }
