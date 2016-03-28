@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="ReservationRetrievalResponse")
+@XmlType(name="ReservationRetrievalResponse",namespace = "http://response.reservation.services.ericsoft.mmone")
 public class ReservationRetrievalRS {
     
 }
