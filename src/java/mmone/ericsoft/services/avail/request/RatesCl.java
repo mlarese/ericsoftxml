@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmone.ericsoft.services.rooms.response;
+package mmone.ericsoft.services.avail.request;
 
+import mmone.ericsoft.services.rooms.response.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name = "Rates",namespace = "http://response.rooms.services.ericsoft.mmone")
+@XmlType(name = "Rates")
 public class RatesCl {
     private List<RateCl> rates;
     @XmlElement(name="Rate")
@@ -24,8 +24,8 @@ public class RatesCl {
             rates = new ArrayList<RateCl>();
         return rates;
     }
+
     public void setRateList(List<RateCl> rates) {
         this.rates = rates;
     }
 }
-

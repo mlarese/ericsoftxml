@@ -8,6 +8,8 @@ package mmone.ericsoft.services.builders;
 import com.mmone.abs.api.service.ResponseBuilder;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext; 
+import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
+import mmone.ericsoft.services.reservation.request.ReservationRetrievalRQ;
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
 
@@ -22,5 +24,11 @@ public class ResponseBuilderFactory{
     }
     public ResponseBuilderFactory (ConfigurationRQ request, WebServiceContext webServiceContext, InitialContext initialContext){
         builder = new ConfigurationResponseBuilder(request, webServiceContext, initialContext); 
+    }
+    public ResponseBuilderFactory (AvailabilityUpdateRQ request, WebServiceContext webServiceContext, InitialContext initialContext){
+        builder = new AvailabilityResponseBuilder(request, webServiceContext, initialContext); 
+    }
+    public ResponseBuilderFactory (ReservationRetrievalRQ request, WebServiceContext webServiceContext, InitialContext initialContext){
+        builder = new ReservationRetrievalResponseBuilder(request, webServiceContext, initialContext); 
     }
 }

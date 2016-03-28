@@ -2,6 +2,7 @@ package mmone.ericsoft.services.rooms.response;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlNs;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author mauro.larese
  */ 
 
-@XmlType(name = "ConfigurationResponse") 
+@XmlType(name = "ConfigurationResponse",namespace = "http://response.rooms.services.ericsoft.mmone") 
 @XmlRootElement(name = "ConfigurationResponse") 
 public class ConfigurationRS {
     private RoomTypesCl roomTypes;
@@ -28,4 +29,7 @@ public class ConfigurationRS {
     public void setRoomTypes(RoomTypesCl roomTypes) {
         this.roomTypes = roomTypes;
     }
+    
+    
+    
 }

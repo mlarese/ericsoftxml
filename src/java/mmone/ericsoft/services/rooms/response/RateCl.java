@@ -7,16 +7,17 @@ package mmone.ericsoft.services.rooms.response;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
- *
- * @author mauro.larese
+ * 
+ * @author maurolarese
  */
+@XmlType(name = "Rate",namespace = "http://response.rooms.services.ericsoft.mmone")
 public class RateCl { 
     private String id; 
     private String description; 
     private String parent;
-    
     public RateCl(String id, String description) {
         this.id = id;
         this.description = description;
@@ -27,22 +28,18 @@ public class RateCl {
         this.description = description;
     }
     public RateCl() {
-    }
-    
+    }  
     @XmlAttribute(name="Id")
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-    
     @XmlAttribute(name="Parent")
     public String getParent() {
         return parent;
     }
-
     public void setParent(String parent) {
         this.parent = parent;
     }
@@ -50,10 +47,8 @@ public class RateCl {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
-    
 }
+

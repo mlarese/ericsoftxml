@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmone.ericsoft.services.helper;
+package mmone.ericsoft.services;
 
 import com.mmone.abs.helpers.Builder;
 import com.mmone.abs.helpers.exceptions.BuildErrorException;
@@ -18,8 +18,12 @@ import javax.jws.soap.SOAPBinding;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.xml.ws.WebServiceContext;
+import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
+import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
 import mmone.ericsoft.services.builders.ResponseBuilderFactory;
-import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
+import mmone.ericsoft.services.reservation.request.ReservationRetrievalRQ;
+import mmone.ericsoft.services.reservation.response.ReservationRetrievalRS;
+import mmone.ericsoft.services.rooms.request.ConfigurationRQ; 
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
 
 /**
@@ -44,6 +48,38 @@ public class AbsEricsoftConnect {
     public ConfigurationRS getConfiguration(@WebParam(name = "ConfigurationRequest") ConfigurationRQ request) {
         ResponseBuilderFactory fact = new ResponseBuilderFactory(request, wsc, getContext());
         Builder<ConfigurationRS> b =  fact.getBuilder();  
+        try {
+            return b.build(); 
+        } catch (BuildErrorException ex) {
+            Logger.getLogger(AbsEricsoftConnect.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AvailabilityUpdateAction")
+    @WebResult(name="AvailabilityUpdateResponse")
+    public AvailabilityUpdateRS AvailabilityUpdateAction(@WebParam(name = "AvailabilityUpdateRequest") AvailabilityUpdateRQ request) {
+        ResponseBuilderFactory fact = new ResponseBuilderFactory(request, wsc, getContext());
+        Builder<AvailabilityUpdateRS> b =  fact.getBuilder();  
+        try {
+            return b.build(); 
+        } catch (BuildErrorException ex) {
+            Logger.getLogger(AbsEricsoftConnect.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ReservationRetrievalAction")
+    @WebResult(name="ReservationRetrievalResponse")
+    public ReservationRetrievalRS ReservationRetrievalAction(@WebParam(name = "ReservationRetrievalRequest") ReservationRetrievalRQ request) {
+        ResponseBuilderFactory fact = new ResponseBuilderFactory(request, wsc, getContext());
+        Builder<ReservationRetrievalRS> b =  fact.getBuilder();  
         try {
             return b.build(); 
         } catch (BuildErrorException ex) {

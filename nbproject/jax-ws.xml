@@ -2,7 +2,7 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services>
     <service name="AbsEricsoftConnect">
-      <implementation-class>mmone.ericsoft.services.helper.AbsEricsoftConnect</implementation-class>
+      <implementation-class>mmone.ericsoft.services.AbsEricsoftConnect</implementation-class>
     </service>
   </services>
   <clients/>
