@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package mmone.ericsoft.services.avail.request.AvailabilityPeriod;
-
-import java.util.Date;
+ 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -17,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name="Period",namespace = "http://availperiod.request.avail.services.ericsoft.mmone")
 public class AvailPeriodCl{
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private int availability;
 
     @XmlElement(name="Availability")
@@ -32,22 +31,22 @@ public class AvailPeriodCl{
 
 
     @XmlAttribute(name="start")
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
 
     @XmlAttribute(name="end")
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 }

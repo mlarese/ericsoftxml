@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package mmone.ericsoft.services.avail.request;
-
-import java.util.Date;
+ 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -16,8 +15,8 @@ import javax.xml.bind.annotation.XmlType;
 */
 @XmlType(name="Period",namespace = "http://request.avail.services.ericsoft.mmone")
 public class PeriodCl {
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private boolean closed;
     private float price;
     private int maxStay;
@@ -26,22 +25,22 @@ public class PeriodCl {
     private boolean closedDeparture;
     
     @XmlAttribute(name="start")
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
     
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
     
     @XmlAttribute(name="end")
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 

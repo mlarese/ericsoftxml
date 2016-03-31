@@ -48,7 +48,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
     }
 
     private String getDownloadContext(){
-        return "CTX_"+getHotelCodeFromRequest()+"_001";
+        return ReservationCrud.getDownloadContext(getHotelCodeFromRequest());
     }
      
     @Override

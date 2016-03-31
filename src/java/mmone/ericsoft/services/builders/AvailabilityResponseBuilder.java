@@ -6,13 +6,17 @@
 package mmone.ericsoft.services.builders;
 
 import com.mmone.abs.api.auth.Authenticator;
+import com.mmone.abs.api.room.RoomCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
+import java.util.List;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext;
 import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
+import mmone.ericsoft.services.avail.request.RoomTypeCl;
+import mmone.ericsoft.services.avail.request.RoomTypesCl;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
-import mmone.ericsoft.services.helper.AuthHelper;
+import mmone.ericsoft.services.helper.AuthHelper; 
 
 /**
  *
@@ -34,6 +38,11 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
  
     @Override
     public void buildResponse() {
+        List<RoomTypeCl> rts = getRequest().getRoomTypes().getRoomTypesList();
+        
+        for (RoomTypeCl rt : rts) {
+             
+        }
         
     }
 

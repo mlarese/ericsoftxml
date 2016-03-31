@@ -21,7 +21,9 @@ import javax.xml.ws.WebServiceContext;
 import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
 import mmone.ericsoft.services.builders.ResponseBuilderFactory;
+import mmone.ericsoft.services.reservation.request.ReservationConfirmationRQ;
 import mmone.ericsoft.services.reservation.request.ReservationRetrievalRQ;
+import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 import mmone.ericsoft.services.reservation.response.ReservationRetrievalRS;
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ; 
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
@@ -87,4 +89,18 @@ public class AbsEricsoftConnect {
             return null;
         }
     }
+    
+    @WebMethod(operationName = "ReservationConfirmationAction")
+    @WebResult(name = "ReservationConfirmationResponse")
+    public ReservationConfirmationRS ReservationConfirmationRS(@WebParam(name = "ReservationConfirmationRequest") ReservationConfirmationRQ request) {
+        ResponseBuilderFactory fact = new ResponseBuilderFactory(request, wsc, getContext());
+        Builder<ReservationConfirmationRS> b = fact.getBuilder();        
+        try {
+            return b.build();            
+        } catch (BuildErrorException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }

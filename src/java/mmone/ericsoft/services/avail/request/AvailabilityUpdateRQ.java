@@ -25,6 +25,9 @@ public class AvailabilityUpdateRQ {
 
     @XmlElement(name="RoomTypes")  
     public RoomTypesCl getRoomTypes() {
+        if (roomTypes== null) {
+            roomTypes= new RoomTypesCl();
+        }
         return roomTypes;
     }
 
