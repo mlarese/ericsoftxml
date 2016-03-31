@@ -5,11 +5,13 @@
  */
 package mmone.ericsoft.services.reservation.response;
 
+import com.mmone.abs.helpers.dates.DateHelper;
 import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import org.apache.commons.lang.time.DateUtils;
 
 /**
  *
@@ -28,8 +30,8 @@ public class RoomCl {
         this.id = id;
     }
     private String roomReservationCode;
-    private String nntes;
-    private Date checkIn;
+    private String notes;
+    private String checkIn;
 
     @XmlElement(name="RoomReservationCode")
     public String getRoomReservationCode() {
@@ -39,30 +41,31 @@ public class RoomCl {
     public void setRoomReservationCode(String roomReservationCode) {
         this.roomReservationCode = roomReservationCode;
     }
-    @XmlElement(name="Nntes")
-    public String getNntes() {
-        return nntes;
+    @XmlElement(name="Notes")
+    public String getNotes() {
+        return notes;
     }
 
-    public void setNntes(String nntes) {
-        this.nntes = nntes;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
     @XmlElement(name="CheckIn")
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
     @XmlElement(name="CheckOut")
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
+      
     @XmlElement(name="AdultsNumber")
     public int getAdultsNumber() {
         return adultsNumber;
@@ -79,18 +82,18 @@ public class RoomCl {
     public void setChildrenNumber(int childrenNumber) {
         this.childrenNumber = childrenNumber;
     }
-    @XmlElement(name="RoomPrice")
-    public float getRoomPrice() {
+    @XmlElement(name="RoomPrice") 
+    public String getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(float roomPrice) {
+    public void setRoomPrice(String roomPrice) {
         this.roomPrice = roomPrice;
     }
-    private Date checkOut;
+    private String checkOut;
     private int adultsNumber;
     private int childrenNumber;
-    private float roomPrice;
+    private String roomPrice;
 
     @XmlElement(name="Prices")
     public PricesCl getPrices() {

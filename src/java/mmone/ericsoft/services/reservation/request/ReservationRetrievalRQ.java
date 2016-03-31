@@ -18,7 +18,17 @@ import javax.xml.bind.annotation.XmlType;
 public class ReservationRetrievalRQ {
     private String username; 
     private String password; 
-    private String propertyCode;
+    private String propertyCode; 
+    private String lastChange; 
+
+    @XmlElement(name = "LastChange")
+    public String getLastChange() {
+        return lastChange;
+    }
+
+    public void setLastChange(String lastChange) {
+        this.lastChange = lastChange;
+    }
     
     @XmlElement(name="Username")  
     public String getUsername() {
@@ -46,14 +56,5 @@ public class ReservationRetrievalRQ {
     public void setPropertyCode(String propertyCode) {
         this.propertyCode = propertyCode;
     }
-    @XmlElement(name="LastChange")
-    public Date getLastChange() {
-        return lastChange;
-    }
-
-    public void setLastChange(Date lastChange) {
-        this.lastChange = lastChange;
-    }
-    
-    private Date lastChange;
+     
 }

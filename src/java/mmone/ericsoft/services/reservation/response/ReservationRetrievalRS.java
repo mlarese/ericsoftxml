@@ -5,13 +5,34 @@
  */
 package mmone.ericsoft.services.reservation.response;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- *
- * @author maurolarese
- */
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD) 
+@XmlRootElement(name = "ReservationRetrievalResponse")
 @XmlType(name="ReservationRetrievalResponse",namespace = "http://response.reservation.services.ericsoft.mmone")
 public class ReservationRetrievalRS {
-    
+    @XmlElement(name = "Reservations")
+    protected ReservationsCl reservations;
+
+    public ReservationsCl getReservations() {
+        if (reservations== null) {
+            reservations= new ReservationsCl();
+        }
+        return reservations;
+    }
+
+    public void setReservations(ReservationsCl reservations) {
+        this.reservations = reservations;
+    }
+  
+     
 }

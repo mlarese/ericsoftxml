@@ -18,9 +18,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="Reservation",namespace = "http://response.reservation.services.ericsoft.mmone")
 public class ReservationCl {
     private String id;
-    private float totalPrice;
-    private Date creationDate;
-    private Date lastChangeDate;
+    private String totalPrice;
+    private String creationDate;
+    private String lastChangeDate;
 
     @XmlAttribute(name="Id")
     public String getId() {
@@ -32,29 +32,29 @@ public class ReservationCl {
     }
 
     @XmlElement(name = "TotalPrice")
-    public float getTotalPrice() {
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(float totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     @XmlElement(name="CreationDate")
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     @XmlElement(name="LastChangeDate")
-    public Date getLastChangeDate() {
+    public String getLastChangeDate() {
         return lastChangeDate;
     }
 
-    public void setLastChangeDate(Date lastChangeDate) {
+    public void setLastChangeDate(String lastChangeDate) {
         this.lastChangeDate = lastChangeDate;
     }
 
@@ -77,14 +77,15 @@ public class ReservationCl {
     public void setBooker(BookerCl booker) {
         this.booker = booker;
     }
-    @XmlElement(name="Reservations")
-    public ReservationsCl getReservations() {
-        return reservations;
+    
+    @XmlElement(name="Rooms")
+    public RoomsCl getRooms() {
+        return rooms;
     }
 
-    public void setReservations(ReservationsCl reservations) {
-        this.reservations = reservations;
+    public void setRooms(RoomsCl rooms) {
+        this.rooms = rooms;
     }
-    private ReservationsCl reservations;
+    private RoomsCl rooms;
     
 }

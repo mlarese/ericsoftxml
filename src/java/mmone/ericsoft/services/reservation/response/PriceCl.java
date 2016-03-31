@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name="Price",namespace = "http://response.reservation.services.ericsoft.mmone")
 public class PriceCl {
     private int idRate;
-    private Date date;
+    private String date;
 
     @XmlAttribute(name = "idRate")
     public int getIdRate() {
@@ -30,23 +30,23 @@ public class PriceCl {
         this.idRate = idRate;
     }
     @XmlAttribute(name = "date")
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     @XmlValue
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
-    private float price;
+    private String price;
    
     
 }

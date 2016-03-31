@@ -5,12 +5,14 @@
  */
 package mmone.ericsoft.services.builders;
 
+import com.mmone.abs.api.auth.Authenticator;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext;
 import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
+import mmone.ericsoft.services.helper.AuthHelper;
 
 /**
  *
@@ -22,20 +24,17 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
 
     public AvailabilityResponseBuilder(AvailabilityUpdateRQ request, WebServiceContext webServiceContext, InitialContext initialContext) {
         super(request, webServiceContext, initialContext);
-        setMock(true);
+        //setMock(true);
     }
   
     @Override
     public String getHotelCodeFromRequest() {
         return getRequest().getPropertyCode();
     }
-
-    private void buildMock(){ 
-        
-    };
+ 
     @Override
     public void buildResponse() {
-        buildMock();
+        
     }
 
     @Override
@@ -55,8 +54,12 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
 
     @Override
     protected void authentication() throws UserNotAuthorized {
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setAuth(AuthHelper.doAuth(
+            this.getRequest().getUsername(), 
+            this.getRequest().getPassword(),  
+            this.getHotelId(),
+            this.getRunner())
+        );
     }
  
     public AvailabilityUpdateRS getResponse() {
