@@ -47,11 +47,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
     public String getHotelCodeFromRequest() {
         return getRequest().getPropertyCode();
     }
-
-    private String getDownloadContext(){
-        return ReservationCrud.getDownloadContext(getHotelCodeFromRequest());
-    }
-     
+ 
     @Override
     public void buildResponse() {
         int portal=1;
@@ -69,7 +65,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
         try {
             List<Map<String, Object>> reservations=ReservationCrud.retrieveReservations(getRunner(),
                     getHotelCode(),
-                    getDownloadContext(),
+                    ReservationCrud.getDownloadContext(getHotelCodeFromRequest()),
                     portal);
             
             
