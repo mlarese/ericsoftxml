@@ -17,9 +17,7 @@ public class AvailabilityUpdateRS {
     private OkCl ok;
 
     @XmlElement(name="Ok")
-    public OkCl getOk() {
-        if(ok==null)
-            ok=new OkCl();
+    public OkCl getOk() { 
         return ok;
     }
 

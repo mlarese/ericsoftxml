@@ -30,9 +30,7 @@ public class RoomTypeCl {
     }
 
     @XmlElement(name = "Rates")
-    public RatesCl getRates() {
-        if(rates==null)
-            rates=new RatesCl();
+    public RatesCl getRates() { 
         return rates;
     }
 
