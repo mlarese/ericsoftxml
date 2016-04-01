@@ -21,7 +21,7 @@ public class ConfigurationRQ {
     private String password; 
     private String propertyCode;
     
-    @XmlElement(name="Username")  
+    @XmlElement(name="Username",required = true)  
     public String getUsername() {
         return username;
     }
@@ -30,7 +30,7 @@ public class ConfigurationRQ {
         this.username = username;
     }
  
-    @XmlElement(name="Password")
+    @XmlElement(name="Password",required = true)
     public String getPassword() {
         return password;
     }
@@ -39,7 +39,7 @@ public class ConfigurationRQ {
         this.password = password;
     }
 
-    @XmlElement(name="PropertyCode")
+    @XmlElement(name="PropertyCode",required = true)
     public String getPropertyCode() {
         return propertyCode;
     }

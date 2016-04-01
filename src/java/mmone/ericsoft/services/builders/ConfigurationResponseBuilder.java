@@ -5,6 +5,7 @@
  */
 package mmone.ericsoft.services.builders;
 
+import com.mmone.abs.api.auth.AuthHelper;
 import com.mmone.abs.api.auth.Authenticator;
 import com.mmone.abs.api.room.RoomCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
@@ -16,8 +17,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
-import javax.xml.ws.WebServiceContext;
-import mmone.ericsoft.services.helper.AuthHelper;
+import javax.xml.ws.WebServiceContext; 
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
 import mmone.ericsoft.services.rooms.response.RateCl;
@@ -95,9 +95,6 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
 
     @Override
     protected void authentication() throws UserNotAuthorized {
-        this.setAuth( new Authenticator.AuthRecord("",1,true,217) );
-        if(true) return;
-        
         this.setAuth(AuthHelper.doAuth(
             this.getRequest().getUsername(), 
             this.getRequest().getPassword(),  

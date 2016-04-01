@@ -5,32 +5,24 @@
  */
 package mmone.ericsoft.services.builders;
 
-import com.mmone.abs.api.auth.Authenticator;
+import com.mmone.abs.api.auth.AuthHelper;
 import com.mmone.abs.api.avail.AvailCrud;
 import com.mmone.abs.api.rates.AbsBookingRule;
 import com.mmone.abs.api.rates.RatePlanCrud;
-import com.mmone.abs.api.room.RoomCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.ErrType;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
-import java.net.MalformedURLException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.xml.ws.WebServiceContext;
-import mmone.ericsoft.services.avail.request.AvailabilityPeriod.AvailPeriodCl;
-import mmone.ericsoft.services.avail.request.AvailabilityPeriodCl;
 import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
 import mmone.ericsoft.services.avail.request.PeriodCl;
 import mmone.ericsoft.services.avail.request.RateCl;
 import mmone.ericsoft.services.avail.request.RoomTypeCl;
-import mmone.ericsoft.services.avail.request.RoomTypesCl;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
-import mmone.ericsoft.services.avail.response.OkCl;
-import mmone.ericsoft.services.helper.AuthHelper; 
+import mmone.ericsoft.services.avail.response.OkCl; 
 
 /**
  *
@@ -139,8 +131,8 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
 
     @Override
     protected void authentication() throws UserNotAuthorized {
-        if(true) return;
-        this.setAuth(AuthHelper.doAuth(
+         
+        this.setAuth( AuthHelper.doAuth(
             this.getRequest().getUsername(), 
             this.getRequest().getPassword(),  
             this.getHotelId(),

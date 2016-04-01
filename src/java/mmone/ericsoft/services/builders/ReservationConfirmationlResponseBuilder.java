@@ -5,6 +5,7 @@
  */
 package mmone.ericsoft.services.builders;
 
+import com.mmone.abs.api.auth.AuthHelper;
 import com.mmone.abs.api.reservation.ReservationCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.ElaborationResultError;
@@ -13,7 +14,7 @@ import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
-import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.WebServiceContext; 
 import mmone.ericsoft.services.reservation.request.ReservationConfirmationRQ;
 import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 
@@ -75,6 +76,13 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
 
     @Override
     protected void authentication() throws UserNotAuthorized {
+      this.setAuth(AuthHelper.doAuth(
+            this.getRequest().getUsername(), 
+            this.getRequest().getPassword(),  
+            this.getHotelId(),
+            this.getRunner())
+        );  
+    
     }
     
 }

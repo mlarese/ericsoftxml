@@ -854,12 +854,12 @@ exists or setup the property manually. For example like this:
                 COMPILATION SECTION
             -->
     <target depends="init" if="no.dist.ear.dir" name="deps-module-jar" unless="no.deps">
-        <ant antfile="${project.AbsApiConnector-1}/build.xml" inheritall="false" target="jar">
+        <ant antfile="${project.AbsApiConnector}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
     <target depends="init" if="dist.ear.dir" name="deps-ear-jar" unless="no.deps">
-        <ant antfile="${project.AbsApiConnector-1}/build.xml" inheritall="false" target="jar">
+        <ant antfile="${project.AbsApiConnector}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
@@ -1017,7 +1017,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.mysql-connector-java-5.1.13-bin.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.xpp3_min-1.1.4c.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.xstream-1.4.3.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${reference.AbsApiConnector-1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-codec-1.10.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.AbsApiConnector.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1033,7 +1034,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.mysql-connector-java-5.1.13-bin.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.xpp3_min-1.1.4c.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.xstream-1.4.3.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${reference.AbsApiConnector-1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-codec-1.10.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${reference.AbsApiConnector.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>
@@ -1447,7 +1449,7 @@ exists or setup the property manually. For example like this:
                 CLEANUP SECTION
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
-        <ant antfile="${project.AbsApiConnector-1}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.AbsApiConnector}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="do-clean">
         <condition property="build.dir.to.clean" value="${build.web.dir}">
