@@ -37,15 +37,16 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
         return getRequest().getPropertyCode();
     }
  
-    private String getDownloadContext(){
-        return ReservationCrud.getDownloadContext(getHotelCodeFromRequest());
-    }
-  
+    
     @Override
     public void buildResponse() {
         try {
             String id = getRequest().getReservations().getReservation().getId();
-            ReservationCrud.insertOrUpdateDownloadRecord(getRunner(), getDownloadContext(), id, id);
+            ReservationCrud.insertOrUpdateDownloadRecord(
+                    getRunner(), 
+                    ReservationCrud.getDownloadContext(getHotelCodeFromRequest()), 
+                    id, 
+                    id);
         } catch (Exception ex) {
             Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }
