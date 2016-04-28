@@ -133,6 +133,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
 
     @Override
     protected void authentication() throws UserNotAuthorized {
+        
         this.setAuth(AuthHelper.doAuth(
             this.getRequest().getUsername(), 
             this.getRequest().getPassword(),  

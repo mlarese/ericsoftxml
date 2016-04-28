@@ -19,8 +19,8 @@ public class CreditCardBuilder {
          
         try {  obj.setExpiration((String) reservation.get("reservation_cc_exp_date")  );     } catch (Exception e) { }
         try {  obj.setName((String) reservation.get("reservation_cc_holder")  );     } catch (Exception e) { }
-        try {  obj.setNumber((String) reservation.get("reservation_cc_number")  );     } catch (Exception e) { }
-        try {  obj.setSecurityCode((String) reservation.get("reservation_cc_sec_code")  );     } catch (Exception e) { }
+        //try {  obj.setNumber((String) reservation.get("reservation_cc_number")  );     } catch (Exception e) { }
+        //try {  obj.setSecurityCode((String) reservation.get("reservation_cc_sec_code")  );     } catch (Exception e) { }
         try {  obj.setType((String) reservation.get("reservation_cc_type")  );     } catch (Exception e) { }
         
         return obj;
