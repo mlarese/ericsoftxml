@@ -18,14 +18,14 @@ import javax.xml.bind.annotation.XmlType;
 public class RoomTypeCl {
 
     private RatesCl rates;
-    private AvailabilityPeriodCl availabilityPeriod;
+    private AvailabilityPeriodsCl availabilityPeriod;
 
     @XmlElement(name="AvailabilityPeriod")
-    public AvailabilityPeriodCl getAvailabilityPeriod() {
+    public AvailabilityPeriodsCl getAvailabilityPeriod() {
         return availabilityPeriod;
     }
 
-    public void setAvailabilityPeriod(AvailabilityPeriodCl availabilityPeriod) {
+    public void setAvailabilityPeriod(AvailabilityPeriodsCl availabilityPeriod) {
         this.availabilityPeriod = availabilityPeriod;
     }
 
@@ -45,7 +45,7 @@ public class RoomTypeCl {
     
     private String id;
 
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }

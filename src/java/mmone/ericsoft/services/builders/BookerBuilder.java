@@ -25,7 +25,7 @@ public class BookerBuilder {
         try {  b.setNotes((String) reservation.get("reservation_note")  );     } catch (Exception e) { }
         try {  b.setSurname((String) reservation.get("reservation_surname")  );     } catch (Exception e) { }
         try {  b.setTelephone((String) reservation.get("reservation_phone")  );     } catch (Exception e) { }
-        try {  b.setCreditCard(  CreditCardBuilder.build(reservation)     );} catch (Exception e) { }
+        //try {  b.setCreditCard(  CreditCardBuilder.build(reservation)     );} catch (Exception e) { }
          
         return b;
     }

@@ -5,7 +5,9 @@
  */
 package mmone.ericsoft.services.avail.request;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -15,16 +17,38 @@ import mmone.ericsoft.services.avail.request.AvailabilityPeriod.AvailPeriodCl;
  *
  * @author maurolarese
  */
-@XmlType(name="AvailabilityPeriod",namespace = "http://request.avail.services.ericsoft.mmone")
-public class AvailabilityPeriodCl {
+@XmlType(name="AvaPeriod",namespace = "http://request.avail.services.ericsoft.mmone")
+public class AvailabilityPeriodCl { 
+    private String start;
+    private String end;
     
-    @XmlElement(name="Period")
-    public AvailPeriodCl getPeriod() {
-        return period;
+    @XmlElement(name="Availability")
+    public int getAvailability() {
+        return availability;
     }
 
-    public void setPeriod(AvailPeriodCl period) {
-        this.period = period;
+    public void setAvailability(int availability) {
+        this.availability = availability;
     }
-    private AvailPeriodCl period;
+    private int availability;
+  
+    @XmlAttribute(name="start")
+    public String getStart() {
+        return start;
+    }
+
+    
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    
+    @XmlAttribute(name="end")
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
 }

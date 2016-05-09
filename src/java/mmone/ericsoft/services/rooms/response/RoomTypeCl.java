@@ -35,7 +35,7 @@ public class RoomTypeCl {
         this.rates = rates;
     }
     private String id;
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }

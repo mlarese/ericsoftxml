@@ -35,7 +35,7 @@ public class RateCl {
     public RateCl() {
     }
     
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }

@@ -22,7 +22,7 @@ public class ReservationCl {
     private String creationDate;
     private String lastChangeDate;
 
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }

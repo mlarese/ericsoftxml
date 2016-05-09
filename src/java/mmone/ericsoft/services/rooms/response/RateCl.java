@@ -29,14 +29,14 @@ public class RateCl {
     }
     public RateCl() {
     }  
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }
     public void setId(String id) {
         this.id = id;
     }
-    @XmlAttribute(name="Parent")
+    @XmlAttribute(name="parent")
     public String getParent() {
         return parent;
     }

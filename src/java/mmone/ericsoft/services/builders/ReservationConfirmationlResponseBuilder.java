@@ -75,6 +75,11 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
         return response;
     }
 
+    public ReservationConfirmationRS getEmptyResponse() {
+        response=new ReservationConfirmationRS();
+        return response;
+    }
+    
     @Override
     protected void authentication() throws UserNotAuthorized {
       this.setAuth(AuthHelper.doAuth(

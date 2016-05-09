@@ -21,7 +21,7 @@ import org.apache.commons.lang.time.DateUtils;
 public class RoomCl {
     private String id; 
 
-    @XmlAttribute(name="Id")
+    @XmlAttribute(name="id")
     public String getId() {
         return id;
     }

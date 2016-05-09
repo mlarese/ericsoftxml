@@ -24,6 +24,7 @@ import javax.xml.ws.WebServiceContext;
 import mmone.ericsoft.services.reservation.request.ReservationRetrievalRQ;
 import mmone.ericsoft.services.reservation.response.BookerCl;
 import mmone.ericsoft.services.reservation.response.ReservationCl;
+import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 import mmone.ericsoft.services.reservation.response.ReservationRetrievalRS;
 import mmone.ericsoft.services.reservation.response.ReservationsCl;
 import org.apache.commons.lang.StringUtils;
@@ -131,6 +132,11 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
         return response;
     }
 
+    public ReservationRetrievalRS getEmptyResponse() {
+        response=new ReservationRetrievalRS();
+        return response;
+    }
+    
     @Override
     protected void authentication() throws UserNotAuthorized {
         

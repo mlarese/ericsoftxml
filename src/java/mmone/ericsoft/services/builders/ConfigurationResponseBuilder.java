@@ -7,11 +7,14 @@ package mmone.ericsoft.services.builders;
 
 import com.mmone.abs.api.auth.AuthHelper;
 import com.mmone.abs.api.auth.Authenticator;
+import com.mmone.abs.api.rates.AbsTreatment;
+import com.mmone.abs.api.rates.RatePlanCrud;
 import com.mmone.abs.api.room.RoomCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.ErrType;
 import com.mmone.abs.helpers.exceptions.RoomLoadingErrorException;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -42,9 +45,32 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
         return getRequest().getPropertyCode();
     }
     
+    private void addRates(RatesCl ret,List<AbsTreatment>treatments,String listId,String listCode){
+        for (AbsTreatment treatment : treatments) { 
+            String listCalcId = listId +"-"+treatment.getTreatment_id();
+            String listCalcCode = listCode +"-"+treatment.getTreatment_code();
+            ret.getRateList().add(new RateCl(listCalcId, listCalcCode));
+        }    
+    }
     private RatesCl loadRates(int roomId){
         RatesCl ret = new RatesCl();
-        ret.getRateList().add(new RateCl("1", "Normal rate"));
+        List<AbsTreatment>treatments;
+        try {
+            treatments = RatePlanCrud.getTreatments(
+                    this.getRunner(),
+                    this.getElaborationResults(),
+                    this.getHotelId());
+        } catch (Exception ex) {
+            Logger.getLogger(ConfigurationResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
+            AbsTreatment t = new AbsTreatment();
+            t.setTreatment_code("BB");
+            t.setTreatment_id(2);
+            t.setTreatment_name("Bed and breakfast");
+            treatments = new ArrayList<AbsTreatment>();
+            treatments.add(t);
+        }
+                 
+        addRates(ret,treatments,"1","NR");
         
         if(getAuth().getLevel()==API_FULL){
         
@@ -108,5 +134,9 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
             response=new ConfigurationRS();
         return response;
     }
-     
+    
+    public ConfigurationRS getEmptyResponse() {
+        response=new ConfigurationRS();
+        return response;
+    }
 }

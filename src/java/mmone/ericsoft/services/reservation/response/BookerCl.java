@@ -26,7 +26,7 @@ public class BookerCl {
      private String countryIsoCode;
      private String telephone;
      private String notes;
-     private CreditCardCl creditCard;
+     //private CreditCardCl creditCard;
 
     @XmlElement(name="Name") 
     public String getName() {
@@ -100,6 +100,8 @@ public class BookerCl {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+    
+    /*
     @XmlElement(name="CreditCard") 
     public CreditCardCl getCreditCard() {
         return creditCard;
@@ -107,7 +109,7 @@ public class BookerCl {
 
     public void setCreditCard(CreditCardCl creditCard) {
         this.creditCard = creditCard;
-    }
+    }*/
     
     
 }
