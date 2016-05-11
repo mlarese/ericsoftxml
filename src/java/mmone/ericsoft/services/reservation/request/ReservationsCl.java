@@ -16,15 +16,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(name="Reservations",namespace = "http://request.reservation.services.ericsoft.mmone")
 public class ReservationsCl {
-    private ReservationCl reservation;
-
-    public void setReservation(ReservationCl reservation) {
-        this.reservation = reservation;
-    }
-
+    private List<ReservationCl> reservationList;
     @XmlElement(name="Reservation")
-    public ReservationCl getReservation() { ;
-        return reservation;
+    public List<ReservationCl> getReservationList() {
+        if(reservationList==null)
+            reservationList = new ArrayList<ReservationCl>();
+        return reservationList;
     }
+
+    public void setReservationList(List<ReservationCl> rates) {
+        this.reservationList = rates;
+    }
+    
+    
+ 
  
 } 

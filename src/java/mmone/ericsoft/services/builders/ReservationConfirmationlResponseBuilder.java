@@ -11,10 +11,12 @@ import com.mmone.abs.api.service.AbstractResponseBuilder;
 import com.mmone.abs.helpers.ElaborationResultError;
 import com.mmone.abs.helpers.ErrType;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext; 
+import mmone.ericsoft.services.reservation.request.ReservationCl;
 import mmone.ericsoft.services.reservation.request.ReservationConfirmationRQ;
 import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 
@@ -40,16 +42,23 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
     
     @Override
     public void buildResponse() {
-        try {
-            String id = getRequest().getReservations().getReservation().getId();
-            ReservationCrud.insertOrUpdateDownloadRecord(
-                    getRunner(), 
-                    ReservationCrud.getDownloadContext(getHotelCodeFromRequest()), 
-                    id, 
-                    id);
-        } catch (Exception ex) {
-            Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
+        
+        List<ReservationCl> reservationList=getRequest().getReservations().getReservationList();
+        String context = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());  
+        
+        for (ReservationCl reservation : reservationList) {
+            try {    
+                String id = reservation.getId();
+                ReservationCrud.insertOrUpdateDownloadRecord(
+                        getRunner(), 
+                        context,
+                        id, 
+                        id);
+            } catch (Exception ex) {
+                Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
     }
 
     @Override

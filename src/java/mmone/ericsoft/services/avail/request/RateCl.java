@@ -5,6 +5,8 @@
  */
 package mmone.ericsoft.services.avail.request;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -16,22 +18,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="Rate",namespace = "http://request.avail.services.ericsoft.mmone")
 public class RateCl { 
     private String id;    
-    private PeriodCl period;
-
+    private List<PeriodCl> periodList;
     @XmlElement(name="Period")
-    public PeriodCl getPeriod() {
-        return period;
+    public List<PeriodCl> getPeriodList() {
+        if(periodList==null)
+            periodList = new ArrayList<PeriodCl>();
+        return periodList;
     }
 
-    public void setPeriod(PeriodCl period) {
-        this.period = period;
+    public void setPeriodList(List<PeriodCl> periods) {
+        this.periodList = periods;
     }
-
-    public RateCl(String id, PeriodCl period) {
-        this.id = id;
-        this.period = period;
-    }
-    
+     
+     
     public RateCl() {
     }
     

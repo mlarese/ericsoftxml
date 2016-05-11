@@ -5,6 +5,7 @@
  */
 package mmone.ericsoft.services.builders;
 
+import com.mmone.abs.api.rates.BuildingResources;
 import com.mmone.abs.api.rates.Debuggable;
 import com.mmone.abs.api.reservation.ResStatusConst;
 import com.mmone.abs.helpers.dates.DateHelper;
@@ -41,6 +42,7 @@ public class ReservationBuilder {
     }
     
     public static ReservationCl build(
+        BuildingResources br,      
         Map reservation, 
         List<Map<String, Object>> reservationDetail, 
         List<Map<String, Object>> reservationRoomData
@@ -57,7 +59,7 @@ public class ReservationBuilder {
         try { r.setState(    getConvertStatus((Integer)reservation.get("reservation_status"))  );  } catch (Exception e) {  }
         try { r.setTotalPrice(   NumbersHelper.format2DigitUS((Float)reservation.get("reservation_tot_reservation_price") ));  } catch (Exception e) {  }
         
-        r.setRooms(   RoomsBuilder.build(reservation, reservationDetail) );
+        r.setRooms(  RoomsBuilder.build(br, reservation, reservationDetail) );
         
         return r;
     }

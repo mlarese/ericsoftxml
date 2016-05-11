@@ -18,15 +18,15 @@ import javax.xml.bind.annotation.XmlValue;
  */
 @XmlType(name="Price",namespace = "http://response.reservation.services.ericsoft.mmone")
 public class PriceCl {
-    private int idRate;
+    private String idRate;
     private String date;
 
     @XmlAttribute(name = "idRate")
-    public int getIdRate() {
+    public String getIdRate() {
         return idRate;
     }
 
-    public void setIdRate(int idRate) {
+    public void setIdRate(String idRate) {
         this.idRate = idRate;
     }
     @XmlAttribute(name = "date")

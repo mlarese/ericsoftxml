@@ -6,6 +6,7 @@
 package mmone.ericsoft.services.builders;
 
 import com.mmone.abs.api.pax.Pax;
+import com.mmone.abs.api.rates.BuildingResources;
 import com.mmone.abs.helpers.dates.DateHelper;
 import com.mmone.abs.helpers.numbers.NumbersHelper;
 import java.util.Date;
@@ -20,6 +21,7 @@ import org.apache.commons.lang.time.DateUtils;
  
 public class RoomsBuilder {
     public static RoomCl buildRoom(
+        BuildingResources br,    
         Map reservation, 
         Map<String, Object> reservationDetail  
     ){
@@ -31,7 +33,7 @@ public class RoomsBuilder {
         r.setRoomReservationCode(   reservationDetail.get("reservation_detail_id").toString()   );
         r.setId(reservationDetail.get("reservation_detail_room_id").toString()   );
         r.setRoomPrice(  NumbersHelper.format2DigitUS( (Float) reservationDetail.get("reservation_detail_price")  )       );
-        r.setPrices(   PricesBuilder.build(reservation,reservationDetail)  );
+        r.setPrices(   PricesBuilder.build(br,reservation,reservationDetail)  );
         try { 
             pax.elaboratePax(reservationDetail.get("reservation_detail_room_guest").toString());
             r.setAdultsNumber(pax.getAdults());
@@ -42,13 +44,14 @@ public class RoomsBuilder {
         return r;
     }
     public static RoomsCl build(
+        BuildingResources br,      
         Map reservation, 
         List<Map<String, Object>> reservationDetail 
     ){
         RoomsCl rs = new RoomsCl();
         
         for (Map<String, Object> resDetail : reservationDetail) {
-            rs.getRooms().add(  buildRoom(reservation,resDetail)  );
+            rs.getRooms().add(  buildRoom(br,reservation,resDetail)  );
         }
           
         return rs;
