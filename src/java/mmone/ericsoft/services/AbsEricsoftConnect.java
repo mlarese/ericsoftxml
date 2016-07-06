@@ -27,7 +27,7 @@ import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 import mmone.ericsoft.services.reservation.response.ReservationRetrievalRS;
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ; 
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
-
+import com.mmone.abs.helpers.exceptions.BuildErrorException;
 /**
  *
  * @author mauro.larese

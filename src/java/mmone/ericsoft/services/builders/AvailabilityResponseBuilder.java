@@ -35,6 +35,7 @@ import mmone.ericsoft.services.avail.request.RateCl;
 import mmone.ericsoft.services.avail.request.RoomTypeCl;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
 import mmone.ericsoft.services.avail.response.OkCl; 
+import mmone.ericsoft.services.helper.Constants;
 
 /**
  *
@@ -43,7 +44,8 @@ import mmone.ericsoft.services.avail.response.OkCl;
 public class AvailabilityResponseBuilder extends AbstractResponseBuilder<AvailabilityUpdateRQ,AvailabilityUpdateRS> {
     private AvailabilityUpdateRS response ;
     private AvailabilityUpdateRQ request ;
-
+    private boolean noPrices = true;
+    
     public AvailabilityResponseBuilder(AvailabilityUpdateRQ request, WebServiceContext webServiceContext, InitialContext initialContext) {
         super(request, webServiceContext, initialContext);
         //setMock(true);
@@ -67,16 +69,19 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
                 List<PeriodCl> prds = r.getPeriodList(); 
                 Map<String,AbsRate> pricelist  = new Hashtable();
                 String treatmentId=null;
-                String listId= listId =  r.getId() ;
-                            String[]aLisId= listId.split("-");
-                            listId=aLisId[0];
-                            treatmentId=aLisId[1]; 
-                            
+                String listId=   r.getId() ;
+                String[]aLisId= listId.split("-");
+                listId=aLisId[0];
+                treatmentId = "1" ;
+
+                if(aLisId.length>1)
+                    treatmentId=aLisId[1];  
+                
                 for (PeriodCl p : prds) { 
                     String dts = p.getStart(); 
                     String dte = p.getEnd();
                     float price=p.getPrice();
-                    
+                     
                     try { 
                         AbsRate rate;    
                         String rateKey = room.getId()+"-"+listId+"-"+dts+"-"+dte;
@@ -135,9 +140,12 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
                         Logger.getLogger(AvailabilityResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } 
-                for (Map.Entry<String, AbsRate> curRate : pricelist.entrySet()) {  
-                    RatePlanCrud.insertPricelists( br,  absContextRecord,  dr,  curRate.getValue() )  ;
-                }
+                
+                if(!noPrices){
+                    for (Map.Entry<String, AbsRate> curRate : pricelist.entrySet()) {  
+                        RatePlanCrud.insertPricelists( br,  absContextRecord,  dr,  curRate.getValue() )  ;
+                    }
+                }     
             }
              
             
@@ -156,9 +164,15 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
                 String dts = period.getStart();
                 String dte = period.getEnd();
                 try {
-                    AvailCrud.saveAllotment(getRpcClient(), getHotelId(), dts, dte, new Integer(rt.getId()), ava);
-                } catch (Exception ex) {
+                    Logger.getLogger(AvailabilityResponseBuilder.class.getName()).log(Level.INFO,  
+                        "saving Avail - " 
+                        +" hcode " +getHotelId()    
+                        +" rt.getId() " +rt.getId()     
+                    );
+                    AvailCrud.saveAllotment(getRpcClient(), getHotelId(), dts, dte, new Integer( rt.getId() ), ava);
+                } catch (Exception ex) { 
                    getErrors().add(  new ErrType("Error inserting data")  );
+                   Logger.getLogger(AvailabilityResponseBuilder.class.getName()).log(Level.INFO, rt.getId() );
                    Logger.getLogger(AvailabilityResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
                 }    
             }
@@ -171,7 +185,7 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
          
         for (RoomTypeCl rt : rts) { 
             try {
-                saveAllotment(rt);
+                saveAllotment(rt); 
                 setPriceAndRestrictions(rt);
             } catch (Exception ex) {
                 Logger.getLogger(AvailabilityResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,7 +193,7 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
         }
         
     }
-
+ 
     @Override
     public void fillErrors() {
         response=new AvailabilityUpdateRS();
@@ -205,6 +219,11 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
             this.getHotelId(),
             this.getRunner())
         );
+        
+       this.noPrices = Constants.hasParam(
+            this.getAuth().getLevel(), 
+            Constants.PARAM_NO_PRICE
+       ) ;
     }
  
     public AvailabilityUpdateRS getResponse() {
