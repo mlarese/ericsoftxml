@@ -6,30 +6,26 @@
 package mmone.ericsoft.services.builders;
 
 import com.mmone.abs.api.auth.AuthHelper;
-import com.mmone.abs.api.auth.Authenticator;
-import com.mmone.abs.api.rates.AbsMultiRate;
 import com.mmone.abs.api.rates.AbsMultiRateTreatment;
 import com.mmone.abs.api.rates.AbsTreatment;
 import com.mmone.abs.api.rates.RatePlanCrud;
 import com.mmone.abs.api.room.RoomCrud;
 import com.mmone.abs.api.service.AbstractResponseBuilder;
-import com.mmone.abs.helpers.ElaborationResults;
 import com.mmone.abs.helpers.ErrType;
 import com.mmone.abs.helpers.exceptions.RoomLoadingErrorException;
 import com.mmone.abs.helpers.exceptions.UserNotAuthorized;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext; 
+import mmone.ericsoft.services.helper.Constants;
 import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
 import mmone.ericsoft.services.rooms.response.RateCl;
 import mmone.ericsoft.services.rooms.response.RatesCl;
 import mmone.ericsoft.services.rooms.response.RoomTypeCl;
-import org.apache.commons.dbutils.QueryRunner;
 
 /**
  *
@@ -73,12 +69,16 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
         RatesCl ret = new RatesCl();
         List<AbsTreatment>treatments =  this.getStructureTreatments() ; 
         addRates(ret,treatments,"1","NR"); 
-         
-        if(getAuth().getLevel()==API_FULL){
+        
+        //Force apiFull
+        boolean hasApiFull =  true;
+        //Constants.hasApiFull(getAuth().getLevel());
+        
+        if( hasApiFull ){
             List<AbsMultiRateTreatment>multiRates = RatePlanCrud.getMultiRateListAndTreatment(
                 getRunner(),
                 getElaborationResults(),
-                getHotelId(),
+                getHotelId(), 
                 roomId
             );
              

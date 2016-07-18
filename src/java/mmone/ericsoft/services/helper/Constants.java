@@ -23,6 +23,10 @@ public class Constants {
     public  static final boolean hasParam(int value,int param){
         return ((value&param)==param) ;
     }
+    
+    public  static final boolean hasApiFull(int value){
+        return ((value&PARAM_API_FULL)==PARAM_API_FULL) ;
+    }
      
 }
 
