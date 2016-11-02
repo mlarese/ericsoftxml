@@ -14,8 +14,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author mauro.larese
  */
-@XmlRootElement(name="ConfigurationRequest") 
-@XmlType(name="Configuration_Request") 
+@XmlRootElement(name="ConfigurationRequest")  
+@XmlType(name="Configuration_Request",namespace = "http://configuration.reservation.request.services.ericsoft.mmone") 
 public class ConfigurationRQ { 
     private String username; 
     private String password; 

@@ -15,8 +15,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="RoomType",namespace = "http://response.rooms.services.ericsoft.mmone")
-public class RoomTypeCl {
+@XmlType(name="RoomType",namespace = "http://response.rooms.response.services.ericsoft.mmone")
+public class RoomTypeRespCl {
     private RatesCl rates;
     @XmlElement(name = "Rates")
     public RatesCl getRates() {
@@ -27,9 +27,9 @@ public class RoomTypeCl {
     public void setRates(RatesCl rates) {
         this.rates = rates;
     }
-    public RoomTypeCl() {
+    public RoomTypeRespCl() {
     }
-    public RoomTypeCl(String id, String Description,RatesCl rates) {
+    public RoomTypeRespCl(String id, String Description,RatesCl rates) {
         this.id = id;
         this.description = Description;
         this.rates = rates;
@@ -42,7 +42,7 @@ public class RoomTypeCl {
     public void setId(String id) {
         this.id = id;
     }
-    public RoomTypeCl(String id, String description) {
+    public RoomTypeRespCl(String id, String description) {
         this.id = id;
         this.description = description;
     }

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mmone.ericsoft.services.reservation.response.BookerCl;
-import mmone.ericsoft.services.reservation.response.ReservationCl;
+import mmone.ericsoft.services.reservation.response.ReservationRespCl;
 import org.apache.commons.lang.math.NumberUtils;
 
 /**
@@ -41,25 +41,23 @@ public class ReservationBuilder {
         }
     }
     
-    public static ReservationCl build(
+    public static ReservationRespCl build(
         BuildingResources br,      
         Map reservation, 
-        List<Map<String, Object>> reservationDetail, 
-        List<Map<String, Object>> reservationRoomData
+        List<Map<String, Object>> reservationDetailRooms,  
+        List<Map<String, Object>> reservationDetailTotals
     ) {
              
-        ReservationCl r = new ReservationCl();
+        ReservationRespCl r = new ReservationRespCl();
         r.setBooker( BookerBuilder.build(reservation)  ); 
-        
-        
-                 
+         
         try { r.setCreationDate( DateHelper.formatISO8601(reservation.get("reservation_opened_date"))  );  } catch (Exception e) {  }
         try { r.setLastChangeDate(DateHelper.formatISO8601(reservation.get("reservation_status_date"))  );  } catch (Exception e) {  }
         try { r.setId( reservation.get("reservation_id").toString()  );  } catch (Exception e) {  }
         try { r.setState(    getConvertStatus((Integer)reservation.get("reservation_status"))  );  } catch (Exception e) {  }
         try { r.setTotalPrice(   NumbersHelper.format2DigitUS((Float)reservation.get("reservation_tot_reservation_price") ));  } catch (Exception e) {  }
         
-        r.setRooms(  RoomsBuilder.build(br, reservation, reservationDetail) );
+        r.setRooms(RoomsBuilder.build(br, reservation, reservationDetailRooms,reservationDetailTotals) );
         
         return r;
     }

@@ -14,8 +14,8 @@ import javax.xml.bind.annotation.XmlType;
 /**
  *
  * @author maurolarese
- */
-@XmlType(name = "Rates")
+ */ 
+@XmlType(name="Rates",namespace = "http://request.avail.request.services.ericsoft.mmone")
 public class RatesCl {
     private List<RateCl> rates;
     @XmlElement(name="Rate")

@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="ReservationConfirmationRequest",namespace = "http://confirmation.request.reservation.services.ericsoft.mmone") 
+@XmlType(name="ReservationConfirmationRequest",namespace = "http://confirmation.reservation.request.services.ericsoft.mmone") 
 
 public class ReservationConfirmationRQ{
     private String username; 
@@ -42,7 +42,7 @@ public class ReservationConfirmationRQ{
         return password;
     }
 
-    public void setReservations(ReservationsCl reservations) {
+    public void setReservations(ReservationsReqCl reservations) {
         this.reservations = reservations;
     }
 
@@ -60,11 +60,11 @@ public class ReservationConfirmationRQ{
     }
   
     
-    private ReservationsCl reservations;
-    @XmlElement(name = "Reservations")
-    public ReservationsCl getReservations() {
+    private ReservationsReqCl reservations;
+    @XmlElement(name = "Reservations",namespace = "http://reservations.reservation.request.services.ericsoft.mmone")
+    public ReservationsReqCl getReservations() {
         if (reservations== null) {
-            reservations= new ReservationsCl();
+            reservations= new ReservationsReqCl();
         }
                  
         return reservations;

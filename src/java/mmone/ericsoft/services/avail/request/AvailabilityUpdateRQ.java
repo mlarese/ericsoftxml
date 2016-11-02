@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author mauro.larese
  */
 @XmlRootElement(name="AvailabilityUpdateRequest") 
-@XmlType(name="AvailabilityUpdate_Request",namespace = "http://request.avail.services.ericsoft.mmone") 
+@XmlType(name="AvailabilityUpdate_Request",namespace = "http://request.avail.request.services.ericsoft.mmone") 
 public class AvailabilityUpdateRQ {  
     
    
@@ -24,17 +24,17 @@ public class AvailabilityUpdateRQ {
     private String propertyCode;
 
     @XmlElement(name="RoomTypes")  
-    public RoomTypesCl getRoomTypes() {
+    public RoomTypesReqCl getRoomTypes() {
         if (roomTypes== null) {
-            roomTypes= new RoomTypesCl();
+            roomTypes= new RoomTypesReqCl();
         }
         return roomTypes;
     }
 
-    public void setRoomTypes(RoomTypesCl roomTypes) {
+    public void setRoomTypes(RoomTypesReqCl roomTypes) {
         this.roomTypes = roomTypes;
     }
-    private RoomTypesCl roomTypes;
+    private RoomTypesReqCl roomTypes;
     
     @XmlElement(name="Username")  
     public String getUsername() {

@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author mauro.larese
  */
-@XmlType(name="Rate",namespace = "http://request.avail.services.ericsoft.mmone")
+@XmlType(name="Rate",namespace = "http://request.avail.request.services.ericsoft.mmone")
 public class RateCl { 
     private String id;    
     private List<PeriodCl> periodList;

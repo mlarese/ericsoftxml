@@ -26,12 +26,12 @@ import org.apache.commons.lang.time.DateUtils;
  * @author mauro.larese
  */
 public class PricesBuilder {
-    public static PricesCl build(BuildingResources br, Map reservation,Map<String, Object> reservationDetail){
+    public static PricesCl build(BuildingResources br, Map reservation,Map<String, Object> reservationDetailRoom,Map<String, Object> reservationDetailTotal){
         PricesCl obj = new PricesCl();
         Map<String, AbsTreatment>treatments= br.getTreatmentsBykey();
          
         try {
-            String board = (String)reservationDetail.get("reservation_detail_room_board"); 
+            String board = (String)reservationDetailRoom.get("reservation_detail_room_board"); 
             AbsTreatment tr;
             
             if(board==null){
@@ -44,13 +44,23 @@ public class PricesBuilder {
              
             Date chkin=(Date)reservation.get("reservation_checkin_date");
             Date chkout = (Date) reservation.get("reservation_checkout_date");
-            float totalPrice=(Float)reservationDetail.get("reservation_detail_price");
+            float totalPrice=(Float)reservationDetailRoom.get("reservation_detail_price"); 
+            
+            if(reservationDetailTotal!=null && reservationDetailTotal.get("reservation_detail_price")!=null){ 
+                try{
+                    totalPrice=(Float)reservationDetailTotal.get("reservation_detail_price");
+                }catch(Exception e){
+                    totalPrice=(Float)reservationDetailRoom.get("reservation_detail_price");
+                }
+
+            } 
+            
             long period = DateHelper.dateDiff(chkin, chkout)-1;
             long days= period+1;
             float cprice =  totalPrice/days;
             String price = NumbersHelper.format2DigitUS(  cprice );
             
-            String listId = reservationDetail.get("reservation_detail_list_id").toString()
+            String listId = reservationDetailRoom.get("reservation_detail_list_id").toString()
                             +"-"
                             +tr.getTreatment_id();
             

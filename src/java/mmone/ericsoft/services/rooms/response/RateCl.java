@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * @author maurolarese
  */
-@XmlType(name = "Rate",namespace = "http://response.rooms.services.ericsoft.mmone")
+@XmlType(name = "Rate",namespace = "http://response.rooms.response.services.ericsoft.mmone")
 public class RateCl { 
     private String id; 
     private String description; 

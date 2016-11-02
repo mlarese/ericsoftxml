@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD) 
 @XmlRootElement(name = "ReservationConfirmationResponse")
-@XmlType(name="ReservationConfirmationResponse",namespace = "http://confirmation.response.reservation.services.ericsoft.mmone")
+@XmlType(name="ReservationConfirmationResponse",namespace = "http://confirmation.response.reservation.response.services.ericsoft.mmone")
 public class ReservationConfirmationRS {
     @XmlElement(name = "Ok")
     protected Ok ok=new Ok();

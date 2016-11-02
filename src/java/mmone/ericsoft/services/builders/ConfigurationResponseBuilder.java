@@ -25,7 +25,7 @@ import mmone.ericsoft.services.rooms.request.ConfigurationRQ;
 import mmone.ericsoft.services.rooms.response.ConfigurationRS;
 import mmone.ericsoft.services.rooms.response.RateCl;
 import mmone.ericsoft.services.rooms.response.RatesCl;
-import mmone.ericsoft.services.rooms.response.RoomTypeCl;
+import mmone.ericsoft.services.rooms.response.RoomTypeRespCl;
 
 /**
  *
@@ -103,7 +103,7 @@ public class ConfigurationResponseBuilder extends AbstractResponseBuilder<Config
             Integer roomId=(Integer)room.get("room_id");
             String roomDesc=(String)room.get("room_name");
             RatesCl rates = loadRates(roomId); 
-            RoomTypeCl rtcl = new RoomTypeCl( roomId.toString() ,roomDesc,rates);
+            RoomTypeRespCl rtcl = new RoomTypeRespCl( roomId.toString() ,roomDesc,rates);
             
             this.getResponse().getRoomTypes().getRoomTypesList().add(rtcl);
         }

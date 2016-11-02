@@ -15,7 +15,7 @@ import mmone.ericsoft.services.avail.request.RateCl;
  *
  * @author maurolarese
  */
-@XmlType(name="Prices",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlType(name="Prices",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class PricesCl {
     private List<PriceCl> prices;
 

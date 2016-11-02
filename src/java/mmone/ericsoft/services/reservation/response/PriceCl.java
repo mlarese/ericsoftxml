@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlValue;
  *
  * @author maurolarese
  */
-@XmlType(name="Price",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlType(name="Price",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class PriceCl {
     private String idRate;
     private String date;

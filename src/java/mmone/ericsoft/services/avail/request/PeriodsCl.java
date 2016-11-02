@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name = "Periods")
+@XmlType(name="Periods",namespace = "http://request.avail.request.services.ericsoft.mmone") 
 public class PeriodsCl {
     private List<PeriodCl> periods;
     @XmlElement(name="Period")

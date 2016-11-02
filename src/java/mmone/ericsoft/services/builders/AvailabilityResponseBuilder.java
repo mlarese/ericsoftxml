@@ -32,7 +32,7 @@ import mmone.ericsoft.services.avail.request.AvailabilityUpdateRQ;
 import mmone.ericsoft.services.avail.request.PeriodCl;
 import mmone.ericsoft.services.avail.request.PeriodsCl;
 import mmone.ericsoft.services.avail.request.RateCl;
-import mmone.ericsoft.services.avail.request.RoomTypeCl;
+import mmone.ericsoft.services.avail.request.RoomTypeReqCl;
 import mmone.ericsoft.services.avail.response.AvailabilityUpdateRS;
 import mmone.ericsoft.services.avail.response.OkCl; 
 import mmone.ericsoft.services.helper.Constants;
@@ -56,7 +56,7 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
         return getRequest().getPropertyCode();
     }
    
-    private void setPriceAndRestrictions(RoomTypeCl room) throws Exception{
+    private void setPriceAndRestrictions(RoomTypeReqCl room) throws Exception{
         if(
             room.getRates()!=null
         ){
@@ -153,7 +153,7 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
              
         }
     }
-    private void saveAllotment(RoomTypeCl rt){
+    private void saveAllotment(RoomTypeReqCl rt){
         if(
             rt.getAvailabilityPeriod()!=null  
         ){
@@ -181,9 +181,9 @@ public class AvailabilityResponseBuilder extends AbstractResponseBuilder<Availab
     }
     @Override
     public void buildResponse() {
-        List<RoomTypeCl> rts = getRequest().getRoomTypes().getRoomTypesList();
+        List<RoomTypeReqCl> rts = getRequest().getRoomTypes().getRoomTypesList();
          
-        for (RoomTypeCl rt : rts) { 
+        for (RoomTypeReqCl rt : rts) { 
             try {
                 saveAllotment(rt); 
                 setPriceAndRestrictions(rt);

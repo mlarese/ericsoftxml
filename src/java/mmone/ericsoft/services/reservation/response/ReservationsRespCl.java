@@ -15,18 +15,18 @@ import mmone.ericsoft.services.avail.request.RateCl;
  *
  * @author maurolarese
  */
-@XmlType(name="Reservations",namespace = "http://response.reservation.services.ericsoft.mmone")
-public class ReservationsCl {
-    private List<ReservationCl> reservations;
+@XmlType(name="Reservations",namespace = "http://response.reservation.response.services.ericsoft.mmone")
+public class ReservationsRespCl {
+    private List<ReservationRespCl> reservations;
 
-    @XmlElement(name="Reservation")
-    public List<ReservationCl> getReservations() {
+    @XmlElement(name="Reservation",namespace = "http://response.reservation.response.services.ericsoft.mmone")
+    public List<ReservationRespCl> getReservations() {
         if(reservations==null)
-            reservations = new ArrayList<ReservationCl>();
+            reservations = new ArrayList<ReservationRespCl>();
         return reservations;
     }
 
-    public void setReservations(List<ReservationCl> reservations) {
+    public void setReservations(List<ReservationRespCl> reservations) {
         this.reservations = reservations;
     }
 }

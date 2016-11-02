@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmone.ericsoft.services.rooms.response;
+package mmone.ericsoft.services.avail.request;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -15,21 +14,18 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="RoomTypes",namespace = "http://response.rooms.services.ericsoft.mmone")
-public class RoomTypesCl {
-    private List<RoomTypeCl> roomTypes;
+@XmlType(name="RoomTypes",namespace = "http://request.avail.request.services.ericsoft.mmone")
+public class RoomTypesReqCl {
+    private List<RoomTypeReqCl> roomTypes;
 
     @XmlElement(name="RoomType")
-    public List<RoomTypeCl> getRoomTypesList() {
+    public List<RoomTypeReqCl> getRoomTypesList() {
         if(roomTypes==null)
-            roomTypes=new ArrayList<RoomTypeCl>();
+            roomTypes=new ArrayList<RoomTypeReqCl>();
         return roomTypes;
     }
 
-    public void setRoomTypes(List<RoomTypeCl> roomTypes) {
+    public void setRoomTypes(List<RoomTypeReqCl> roomTypes) {
         this.roomTypes = roomTypes;
     }   
-
-    
-        
-  }
+}

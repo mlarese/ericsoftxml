@@ -17,20 +17,20 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD) 
-@XmlRootElement(name = "ReservationRetrievalResponse")
-@XmlType(name="ReservationRetrievalResponse",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlRootElement(name = "ReservationRetrievalResponse",namespace = "http://response.reservation.response.services.ericsoft.mmone")
+@XmlType(name="ReservationRetrievalResponse",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class ReservationRetrievalRS {
     @XmlElement(name = "Reservations")
-    protected ReservationsCl reservations;
+    protected ReservationsRespCl reservations;
 
-    public ReservationsCl getReservations() {
+    public ReservationsRespCl getReservations() {
         if (reservations== null) {
-            reservations= new ReservationsCl();
+            reservations= new ReservationsRespCl();
         }
         return reservations;
     }
 
-    public void setReservations(ReservationsCl reservations) {
+    public void setReservations(ReservationsRespCl reservations) {
         this.reservations = reservations;
     }
   

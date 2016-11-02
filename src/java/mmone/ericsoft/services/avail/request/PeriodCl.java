@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
 */
-@XmlType(name="Period",namespace = "http://request.avail.services.ericsoft.mmone")
+@XmlType(name="Period",namespace = "http://request.avail.request.services.ericsoft.mmone")
 public class PeriodCl {
     private String start;
     private String end;

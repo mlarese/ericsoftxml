@@ -14,17 +14,17 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="Reservations",namespace = "http://request.reservation.services.ericsoft.mmone")
-public class ReservationsCl {
-    private List<ReservationCl> reservationList;
+@XmlType(name="Reservations",namespace = "http://reservations.reservation.request.services.ericsoft.mmone")
+public class ReservationsReqCl {
+    private List<ReservationReqCl> reservationList;
     @XmlElement(name="Reservation")
-    public List<ReservationCl> getReservationList() {
+    public List<ReservationReqCl> getReservationList() {
         if(reservationList==null)
-            reservationList = new ArrayList<ReservationCl>();
+            reservationList = new ArrayList<ReservationReqCl>();
         return reservationList;
     }
 
-    public void setReservationList(List<ReservationCl> rates) {
+    public void setReservationList(List<ReservationReqCl> rates) {
         this.reservationList = rates;
     }
     

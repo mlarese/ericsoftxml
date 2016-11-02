@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="AvailabilityUpdateResponse",namespace = "http://response.avail.services.ericsoft.mmone")
+@XmlType(name="AvailabilityUpdateResponse",namespace = "http://response.avail.response.services.ericsoft.mmone")
 public class AvailabilityUpdateRS {
     private OkCl ok;
 

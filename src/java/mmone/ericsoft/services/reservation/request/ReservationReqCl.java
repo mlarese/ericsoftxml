@@ -16,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="Reservation",namespace = "http://request.reservation.services.ericsoft.mmone")
-public class ReservationCl {
+@XmlType(name="Reservation",namespace = "http://request.reservation.request.services.ericsoft.mmone")
+public class ReservationReqCl {
     private String id;
     
     @XmlAttribute(name="id")

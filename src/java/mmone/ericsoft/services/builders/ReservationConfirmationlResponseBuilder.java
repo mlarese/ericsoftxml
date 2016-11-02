@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext; 
-import mmone.ericsoft.services.reservation.request.ReservationCl;
+import mmone.ericsoft.services.reservation.request.ReservationReqCl;
 import mmone.ericsoft.services.reservation.request.ReservationConfirmationRQ;
 import mmone.ericsoft.services.reservation.response.ReservationConfirmationRS;
 
@@ -43,10 +43,10 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
     @Override
     public void buildResponse() {
         
-        List<ReservationCl> reservationList=getRequest().getReservations().getReservationList();
+        List<ReservationReqCl> reservationList=getRequest().getReservations().getReservationList();
         String context = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());  
         
-        for (ReservationCl reservation : reservationList) {
+        for (ReservationReqCl reservation : reservationList) {
             try {    
                 String id = reservation.getId();
                 ReservationCrud.insertOrUpdateDownloadRecord(

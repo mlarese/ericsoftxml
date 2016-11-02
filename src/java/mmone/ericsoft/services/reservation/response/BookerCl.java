@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="Booker",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlType(name="Booker",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class BookerCl {
      private String name;
      private String surname;

@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author maurolarese 
  */
 
-@XmlType(name="Period",namespace = "http://availperiod.request.avail.services.ericsoft.mmone")
+@XmlType(name="Period",namespace = "http://availperiod.avail.request.services.ericsoft.mmone")
 public class AvailPeriodCl{
     private String start;
     private String end;

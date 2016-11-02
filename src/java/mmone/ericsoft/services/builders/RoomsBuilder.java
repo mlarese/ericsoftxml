@@ -23,36 +23,59 @@ public class RoomsBuilder {
     public static RoomCl buildRoom(
         BuildingResources br,    
         Map reservation, 
-        Map<String, Object> reservationDetail  
+        Map<String, Object> reservationDetailRoom  ,
+        Map<String, Object> reservationDetailTotal  
     ){
         RoomCl r = new RoomCl();
         Pax pax = Pax.instance();
          
         r.setCheckIn( DateHelper.formatYMD(reservation.get("reservation_checkin_date"))      );
         r.setCheckOut(DateHelper.formatYMD(  reservation.get("reservation_checkout_date")     )      );
-        r.setRoomReservationCode(   reservationDetail.get("reservation_detail_id").toString()   );
-        r.setId(reservationDetail.get("reservation_detail_room_id").toString()   );
-        r.setRoomPrice(  NumbersHelper.format2DigitUS( (Float) reservationDetail.get("reservation_detail_price")  )       );
-        r.setPrices(   PricesBuilder.build(br,reservation,reservationDetail)  );
+        r.setRoomReservationCode(reservationDetailRoom.get("reservation_detail_id").toString()   );
+        r.setId(reservationDetailRoom.get("reservation_detail_room_id").toString()   );
+        
+        r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailRoom.get("reservation_detail_price")  )       );
+        
+        if(reservationDetailTotal!=null && reservationDetailTotal.get("reservation_detail_price")!=null){
+            
+            try{
+                r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailTotal.get("reservation_detail_price")  )       );
+            }catch(Exception e){
+                r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailRoom.get("reservation_detail_price")  )       );
+            }
+            
+        } 
+        
+         
+        r.setPrices(PricesBuilder.build(br,reservation,reservationDetailRoom,reservationDetailTotal)  );
+        
         try { 
-            pax.elaboratePax(reservationDetail.get("reservation_detail_room_guest").toString());
+            pax.elaboratePax(reservationDetailRoom.get("reservation_detail_room_guest").toString());
             r.setAdultsNumber(pax.getAdults());
             r.setChildrenNumber(pax.getChildren());
         } catch (Exception e) { 
-            Logger.getLogger("RoomsBuilder").log(Level.SEVERE,reservationDetail.get("reservation_detail_room_guest").toString(),e);
+            Logger.getLogger("RoomsBuilder").log(Level.SEVERE,reservationDetailRoom.get("reservation_detail_room_guest").toString(),e);
         }
         return r;
     }
     public static RoomsCl build(
         BuildingResources br,      
         Map reservation, 
-        List<Map<String, Object>> reservationDetail 
+        List<Map<String, Object>> reservationDetailRooms,  
+        List<Map<String, Object>> reservationDetailTotals  
     ){
         RoomsCl rs = new RoomsCl();
         
-        for (Map<String, Object> resDetail : reservationDetail) {
-            rs.getRooms().add(  buildRoom(br,reservation,resDetail)  );
+        for (int i = 0; i < reservationDetailRooms.size(); i++) {
+            
+            Map<String, Object> resDetailRoom = reservationDetailRooms.get(i);
+            Map<String, Object> resDetailTotal=null;
+            if(reservationDetailTotals.size()== reservationDetailRooms.size()){
+                resDetailTotal=reservationDetailTotals.get(i);
+            }
+            rs.getRooms().add(   buildRoom(br,reservation,resDetailRoom,resDetailTotal)   );
         }
+
           
         return rs;
     }

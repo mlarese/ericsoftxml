@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="ReservationRetrievalRequest",namespace = "http://request.reservation.services.ericsoft.mmone") 
-
+@XmlType(name="ReservationRetrievalRequest",namespace = "http://retrieval.reservation.request.services.ericsoft.mmone") 
 public class ReservationRetrievalRQ {
     private String username; 
     private String password; 
     private String propertyCode; 
     private String lastChange; 
+    private String contextId=null; 
 
     @XmlElement(name = "LastChange")
     public String getLastChange() {
@@ -51,10 +51,19 @@ public class ReservationRetrievalRQ {
     @XmlElement(name="PropertyCode")
     public String getPropertyCode() {
         return propertyCode;
-    }
+    } 
 
     public void setPropertyCode(String propertyCode) {
         this.propertyCode = propertyCode;
+    }
+ 
+    @XmlElement(name="ContextId")
+    public String getContextId() {
+        return contextId;
+    }
+    
+    public void setContextId(String contextId) {
+        this.contextId = contextId;
     }
      
 }

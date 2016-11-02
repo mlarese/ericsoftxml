@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="CreditCard",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlType(name="CreditCard",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class CreditCardCl {
     private String type;
     private String number;

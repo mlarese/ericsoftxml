@@ -22,9 +22,9 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.xml.ws.WebServiceContext; 
 import mmone.ericsoft.services.reservation.request.ReservationRetrievalRQ;
-import mmone.ericsoft.services.reservation.response.ReservationCl;
+import mmone.ericsoft.services.reservation.response.ReservationRespCl;
 import mmone.ericsoft.services.reservation.response.ReservationRetrievalRS;
-import mmone.ericsoft.services.reservation.response.ReservationsCl;
+import mmone.ericsoft.services.reservation.response.ReservationsRespCl;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 
@@ -50,7 +50,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
     @Override
     public void buildResponse() {
         int portal=1;
-        ReservationsCl rs=getResponse().getReservations();
+        ReservationsRespCl rs=getResponse().getReservations();
         
         
         Date lastChange=null;
@@ -64,10 +64,16 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
         }
         
         try {
+            String contextId = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());
+            
+            if(getRequest().getContextId()!=null)
+                contextId = getRequest().getContextId();
+            
+            Logger.getLogger(ReservationRetrievalResponseBuilder.class.getName()).log(Level.INFO, "using contextid = " + contextId);
             List<Map<String, Object>> reservations=ReservationCrud.retrieveReservations(getRunner(),
                     getHotelCode(),
-                    ReservationCrud.getDownloadContext(getHotelCodeFromRequest()),
-                    portal);
+                    contextId,
+                    portal); 
             
             
             int reservationCount = 0;
@@ -87,9 +93,10 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
                 if(currentPortalId==null) currentPortalId=1;
                 
                 try{
-                    List<Map<String, Object>> reservationDetails = ReservationCrud.loadReservationOtherData(getRunner(), reservationId) ;
-                    List<Map<String, Object>> reservationRoomData = ReservationCrud.loadReservationRoomData(getRunner(), reservationId) ;                    
-                    ReservationCl r = ReservationBuilder.build( br, reservation, reservationDetails, reservationRoomData);
+                    List<Map<String, Object>> reservationDetailsRooms = ReservationCrud.loadReservationDetailRooms(getRunner(), reservationId) ; 
+                    List<Map<String, Object>> reservationDetailsTotals = ReservationCrud.loadReservationRoomData(getRunner(), reservationId) ;                    
+                    
+                    ReservationRespCl r = ReservationBuilder.build(br, reservation, reservationDetailsRooms, reservationDetailsTotals);
                     
                     rs.getReservations().add(r);
                     

@@ -14,8 +14,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author mauro.larese
  */
-@XmlType(name="RoomType",namespace = "http://request.avail.services.ericsoft.mmone")
-public class RoomTypeCl {
+@XmlType(name="RoomType",namespace = "http://request.avail.request.services.ericsoft.mmone")
+public class RoomTypeReqCl {
 
     private RatesCl rates;
     private AvailabilityPeriodsCl availabilityPeriod;
@@ -38,7 +38,7 @@ public class RoomTypeCl {
         this.rates = rates;
     }
     
-    public RoomTypeCl() {
+    public RoomTypeReqCl() {
     }
 
  

@@ -17,7 +17,7 @@ import org.apache.commons.lang.time.DateUtils;
  *
  * @author maurolarese
  */
-@XmlType(name="Room",namespace = "http://response.reservation.services.ericsoft.mmone")
+@XmlType(name="Room",namespace = "http://response.reservation.response.services.ericsoft.mmone")
 public class RoomCl {
     private String id; 
 

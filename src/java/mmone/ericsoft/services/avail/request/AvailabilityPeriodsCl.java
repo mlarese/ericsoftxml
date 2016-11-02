@@ -17,7 +17,7 @@ import mmone.ericsoft.services.avail.request.AvailabilityPeriod.AvailPeriodCl;
  *
  * @author maurolarese
  */
-@XmlType(name="AvailabilityPeriod",namespace = "http://request.avail.services.ericsoft.mmone")
+@XmlType(name="AvailabilityPeriod",namespace = "http://request.avail.request.services.ericsoft.mmone")
 public class AvailabilityPeriodsCl {
     private List<AvailabilityPeriodCl> availabilityPeriod;
     @XmlElement(name="Period")
