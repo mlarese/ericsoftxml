@@ -15,11 +15,11 @@ import mmone.ericsoft.services.avail.request.RateCl;
  *
  * @author maurolarese
  */
-@XmlType(name="Reservations",namespace = "http://response.reservation.response.services.ericsoft.mmone")
+@XmlType(name="Reservations")
 public class ReservationsRespCl {
     private List<ReservationRespCl> reservations;
 
-    @XmlElement(name="Reservation",namespace = "http://response.reservation.response.services.ericsoft.mmone")
+    @XmlElement(name="Reservation")
     public List<ReservationRespCl> getReservations() {
         if(reservations==null)
             reservations = new ArrayList<ReservationRespCl>();
