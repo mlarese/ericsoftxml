@@ -38,11 +38,11 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
     public String getHotelCodeFromRequest() {
         return getRequest().getPropertyCode();
     }
- 
+  
     
     @Override
     public void buildResponse() {
-        
+          
         List<ReservationReqCl> reservationList=getRequest().getReservations().getReservationList();
         String context = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());  
         

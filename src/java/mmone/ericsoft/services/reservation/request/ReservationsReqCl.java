@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author maurolarese
  */
-@XmlType(name="Reservations",namespace = "http://reservations.reservation.request.services.ericsoft.mmone")
+@XmlType(name="Reservations",namespace = "")
 public class ReservationsReqCl {
     private List<ReservationReqCl> reservationList;
     @XmlElement(name="Reservation")
@@ -27,8 +27,5 @@ public class ReservationsReqCl {
     public void setReservationList(List<ReservationReqCl> rates) {
         this.reservationList = rates;
     }
-    
-    
- 
- 
+     
 } 
