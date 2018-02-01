@@ -44,20 +44,20 @@ public class PricesBuilder {
              
             Date chkin=(Date)reservation.get("reservation_checkin_date");
             Date chkout = (Date) reservation.get("reservation_checkout_date");
-            float totalPrice=(Float)reservationDetailRoom.get("reservation_detail_price"); 
+            double totalPrice=(Double)reservationDetailRoom.get("reservation_detail_price"); 
             
             if(reservationDetailTotal!=null && reservationDetailTotal.get("reservation_detail_price")!=null){ 
                 try{
-                    totalPrice=(Float)reservationDetailTotal.get("reservation_detail_price");
+                    totalPrice=(Double)reservationDetailTotal.get("reservation_detail_price");
                 }catch(Exception e){
-                    totalPrice=(Float)reservationDetailRoom.get("reservation_detail_price");
+                    totalPrice=(Double)reservationDetailRoom.get("reservation_detail_price");
                 }
 
             } 
             
             long period = DateHelper.dateDiff(chkin, chkout)-1;
             long days= period+1;
-            float cprice =  totalPrice/days;
+            double cprice =  totalPrice/days;
             String price = NumbersHelper.format2DigitUS(  cprice );
             
             String listId = reservationDetailRoom.get("reservation_detail_list_id").toString()

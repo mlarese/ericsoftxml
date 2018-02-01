@@ -45,6 +45,7 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
           
         List<ReservationReqCl> reservationList=getRequest().getReservations().getReservationList();
         String context = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());  
+        // context = "mmone_test";
         
         for (ReservationReqCl reservation : reservationList) {
             try {    

@@ -34,19 +34,17 @@ public class RoomsBuilder {
         r.setRoomReservationCode(reservationDetailRoom.get("reservation_detail_id").toString()   );
         r.setId(reservationDetailRoom.get("reservation_detail_room_id").toString()   );
         
-        r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailRoom.get("reservation_detail_price")  )       );
+        r.setRoomPrice(NumbersHelper.format2DigitUS(reservationDetailRoom.get("reservation_detail_price")  )       );
         
         if(reservationDetailTotal!=null && reservationDetailTotal.get("reservation_detail_price")!=null){
             
             try{
-                r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailTotal.get("reservation_detail_price")  )       );
+                r.setRoomPrice(NumbersHelper.format2DigitUS(  reservationDetailTotal.get("reservation_detail_price")  )       );
             }catch(Exception e){
-                r.setRoomPrice(NumbersHelper.format2DigitUS((Float) reservationDetailRoom.get("reservation_detail_price")  )       );
-            }
-            
+                r.setRoomPrice(NumbersHelper.format2DigitUS(  reservationDetailRoom.get("reservation_detail_price")  )       );
+            }    
         } 
         
-         
         r.setPrices(PricesBuilder.build(br,reservation,reservationDetailRoom,reservationDetailTotal)  );
         
         try { 

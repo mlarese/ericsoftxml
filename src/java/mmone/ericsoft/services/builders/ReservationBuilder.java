@@ -53,7 +53,10 @@ public class ReservationBuilder {
          
         try { r.setCreationDate( DateHelper.formatISO8601(reservation.get("reservation_opened_date"))  );  } catch (Exception e) {  }
         try { r.setLastChangeDate(DateHelper.formatISO8601(reservation.get("reservation_status_date"))  );  } catch (Exception e) {  }
-        try { r.setId( reservation.get("reservation_id").toString()  );  } catch (Exception e) {  }
+        
+        // try { r.setId( reservation.get("reservation_id").toString()  );  } catch (Exception e) {  }
+        try { r.setId( (String) reservation.get("new_reservation_id")  );  } catch (Exception e) {  }
+        
         try { r.setState(    getConvertStatus((Integer)reservation.get("reservation_status"))  );  } catch (Exception e) {  }
         try { r.setTotalPrice(   NumbersHelper.format2DigitUS((Float)reservation.get("reservation_tot_reservation_price") ));  } catch (Exception e) {  }
         

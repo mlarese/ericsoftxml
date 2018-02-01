@@ -69,11 +69,19 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
             if(getRequest().getContextId()!=null)
                 contextId = getRequest().getContextId();
             
+            // contextId = "mmone_test";
             Logger.getLogger(ReservationRetrievalResponseBuilder.class.getName()).log(Level.INFO, "using contextid = " + contextId);
-            List<Map<String, Object>> reservations=ReservationCrud.retrieveReservations(getRunner(),
+            
+            List<Map<String, Object>> reservations=ReservationCrud.retrieveReservationsAllRPC(
+                getRpcClient(), 
+                getHotelCode(), 
+                contextId
+            );
+            
+            /** List<Map<String, Object>> reservations=ReservationCrud.retrieveReservations(getRunner(),
                     getHotelCode(),
                     contextId,
-                    portal); 
+                    portal); **/
             
             
             int reservationCount = 0;
@@ -88,14 +96,15 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
                 
                 reservationCount++;
                 if(reservationCount>ReservationCrud.DOWNLOAD_LIMIT) break;
-                Integer reservationId = new Integer(reservation.get("reservation_id").toString());
+                Object reservationId = reservation.get("reservation_id");
                 Integer currentPortalId = new Integer(reservation.get("portal_id").toString());
                 if(currentPortalId==null) currentPortalId=1;
                 
                 try{
-                    List<Map<String, Object>> reservationDetailsRooms = ReservationCrud.loadReservationDetailRooms(getRunner(), reservationId) ; 
-                    List<Map<String, Object>> reservationDetailsTotals = ReservationCrud.loadReservationRoomData(getRunner(), reservationId) ;                    
-                    
+                    // List<Map<String, Object>> reservationDetailsRooms = ReservationCrud.loadReservationDetailRooms(getRunner(), reservationId) ; 
+                    List<Map<String, Object>> reservationDetailsRooms = ReservationCrud.loadReservationDetailRooms(reservation) ; 
+                    //List<Map<String, Object>> reservationDetailsTotals = ReservationCrud.loadReservationRoomData(getRunner(), reservationId) ;                    
+                    List<Map<String, Object>> reservationDetailsTotals = ReservationCrud.loadReservationRoomData(reservation) ;
                     ReservationRespCl r = ReservationBuilder.build(br, reservation, reservationDetailsRooms, reservationDetailsTotals);
                     
                     rs.getReservations().add(r);
@@ -105,7 +114,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
                         Level.SEVERE 
                         , "Error adding reservation"
                           + "\n - Structure : " + getHotelCode()
-                          + "\n - Reservation : " + reservationId 
+                          + "\n - Reservation : " + reservationId.toString()
                     );
                     
                 }
