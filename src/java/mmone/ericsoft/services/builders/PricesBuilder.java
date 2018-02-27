@@ -60,9 +60,21 @@ public class PricesBuilder {
             double cprice =  totalPrice/days;
             String price = NumbersHelper.format2DigitUS(  cprice );
             
-            String listId = reservationDetailRoom.get("reservation_detail_list_id").toString()
+            
+            Integer curLid = (Integer) reservationDetailRoom.get("reservation_detail_list_id");
+            if(curLid==null) {
+                curLid=1;
+            }
+            
+            Integer trId = 0;
+            
+            if(tr!=null) {
+                trId = tr.getTreatment_id();
+            }
+            
+            String listId = curLid.toString()
                             +"-"
-                            +tr.getTreatment_id();
+                            +trId;
             
             for (int i = 0; i <= period; i++) {
                  
@@ -76,7 +88,6 @@ public class PricesBuilder {
                 obj.getPrices().add(p);
                 
             }
-            
             
         } catch (Exception ex) {
             Logger.getLogger(PricesBuilder.class.getName()).log(Level.SEVERE, null, ex);

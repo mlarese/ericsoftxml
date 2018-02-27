@@ -51,8 +51,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
     public void buildResponse() {
         int portal=1;
         ReservationsRespCl rs=getResponse().getReservations();
-        
-        
+     
         Date lastChange=null;
         
         if(  !StringUtils.isEmpty(getRequest().getLastChange())   ){
@@ -89,7 +88,7 @@ public class ReservationRetrievalResponseBuilder extends AbstractResponseBuilder
             for (Map<String, Object> reservation : reservations) {
                 if(lastChange!=null){
                     try {
-                        if( lastChange.compareTo(  (Date)reservation.get("reservation_status_date")    )>0 ) continue;
+                        // if( lastChange.compareTo(  (Date)reservation.get("reservation_status_date")    )>0 ) continue;
                     } catch (Exception e) { }
                     
                 }

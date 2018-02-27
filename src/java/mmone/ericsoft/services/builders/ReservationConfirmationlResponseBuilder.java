@@ -42,7 +42,8 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
     
     @Override
     public void buildResponse() {
-          
+        Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log( Level.INFO  , "buildResponse - Structure : " + getHotelCode() );
+        
         List<ReservationReqCl> reservationList=getRequest().getReservations().getReservationList();
         String context = ReservationCrud.getDownloadContext(getHotelCodeFromRequest());  
         // context = "mmone_test";
@@ -50,11 +51,13 @@ public class ReservationConfirmationlResponseBuilder extends AbstractResponseBui
         for (ReservationReqCl reservation : reservationList) {
             try {    
                 String id = reservation.getId();
+                 
                 ReservationCrud.insertOrUpdateDownloadRecord(
                         getRunner(), 
                         context,
                         id, 
                         id);
+                Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log( Level.INFO  , "found reservation " + id.toString() );
             } catch (Exception ex) {
                 Logger.getLogger(ReservationConfirmationlResponseBuilder.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -58,7 +58,10 @@ public class ReservationBuilder {
         try { r.setId( (String) reservation.get("new_reservation_id")  );  } catch (Exception e) {  }
         
         try { r.setState(    getConvertStatus((Integer)reservation.get("reservation_status"))  );  } catch (Exception e) {  }
-        try { r.setTotalPrice(   NumbersHelper.format2DigitUS((Float)reservation.get("reservation_tot_reservation_price") ));  } catch (Exception e) {  }
+        try { r.setTotalPrice(   NumbersHelper.format2DigitUS((Double)reservation.get("reservation_tot_reservation_price") ));  } 
+        catch (Exception e) {  
+            Logger.getLogger(ReservationBuilder.class.getName()).log(Level.SEVERE, e.getMessage());
+        }
         
         r.setRooms(RoomsBuilder.build(br, reservation, reservationDetailRooms,reservationDetailTotals) );
         
